@@ -866,6 +866,10 @@ textarea {
   max-width: 12ch;
 }
 
+.mobile-page-image {
+  display: none;
+}
+
 @media (max-width: 900px) {
   .menu-button {
     display: inline-grid;
@@ -987,6 +991,21 @@ textarea {
 
   .hero-media::after {
     display: none;
+  }
+
+  .mobile-page-image {
+    display: block;
+    background: var(--warm-white);
+  }
+
+  .mobile-page-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .mobile-page-image + .page-hero {
+    padding-top: 28px;
   }
 
   .hero-copy,
