@@ -968,16 +968,25 @@ textarea {
   }
 
   .hero-media {
-    padding: 28px 0 18px;
+    padding: 0 0 18px;
+    overflow: visible;
+    background: var(--warm-white);
   }
 
   .hero-media img {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    inset: auto;
+    display: block;
     width: 100%;
-    height: 100%;
+    height: auto;
     min-height: 0;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: center center;
+    opacity: 1;
+  }
+
+  .hero-media::after {
+    display: none;
   }
 
   .hero-copy,
@@ -990,7 +999,7 @@ textarea {
   .hero-content {
     position: relative;
     inset: auto;
-    padding-top: 0;
+    padding-top: 28px;
   }
 
   .hero-copy {
@@ -1099,35 +1108,7 @@ textarea {
   }
 
   .chat-widget {
-    top: 84px;
-    left: 334px;
-    right: auto;
-    bottom: auto;
-  }
-
-  .chat-toggle {
-    position: relative;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    overflow: hidden;
-    color: transparent;
-  }
-
-  .chat-toggle::after {
-    content: "?";
-    position: absolute;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    color: #fff;
-    font-size: 1rem;
-    text-indent: 0;
-  }
-
-  .chat-panel {
-    top: 48px;
-    bottom: auto;
+    display: none;
   }
 
   .site-footer {
