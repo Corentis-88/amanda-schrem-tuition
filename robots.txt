@@ -10,4 +10,4 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
-Sitemap: https://amandaschremtuition.co.uk/sitemap.xml
+Sitemap: https://www.amandaschremtuition.co.uk/sitemap.xml
