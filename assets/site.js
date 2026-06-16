@@ -5,12 +5,58 @@ const tracking = {
   }
 };
 
+function reportPhoneConversion(url) {
+  if (typeof window.gtag !== "function") {
+    if (url) window.location.href = url;
+    return false;
+  }
+
+  let navigated = false;
+  const continueToCall = () => {
+    if (navigated) return;
+    navigated = true;
+    if (url) window.location.href = url;
+  };
+
+  window.setTimeout(continueToCall, 800);
+
+  window.gtag("event", "conversion", {
+    send_to: "AW-18239191836/9QmYCLq0lMAcEJz2j_lD",
+    value: 50.0,
+    currency: "USD",
+    event_callback: continueToCall
+  });
+
+  return false;
+}
+
+function isPhoneLink(el) {
+  return el instanceof HTMLAnchorElement && el.href.startsWith("tel:");
+}
+
 document.querySelectorAll("[data-track]").forEach((el) => {
-  el.addEventListener("click", () => {
+  el.addEventListener("click", (event) => {
     tracking.fire(el.dataset.track, {
       site: "amanda-schrem-tuition",
       label: el.dataset.label || el.textContent.trim()
     });
+
+    if (isPhoneLink(el)) {
+      event.preventDefault();
+      reportPhoneConversion(el.href);
+    }
+  });
+});
+
+document.querySelectorAll('a[href^="tel:"]:not([data-track])').forEach((el) => {
+  el.addEventListener("click", (event) => {
+    tracking.fire("phone_intent", {
+      site: "amanda-schrem-tuition",
+      label: el.textContent.trim() || "phone-link"
+    });
+
+    event.preventDefault();
+    reportPhoneConversion(el.href);
   });
 });
 
